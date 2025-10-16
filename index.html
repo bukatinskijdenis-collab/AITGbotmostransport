@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@University_mos_transport_bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
+        
+        .bot-preview {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .bot-name {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .bot-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .pros-section, .cons-section {
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .pros-section {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border-left: 4px solid #28a745;
+        }
+        
+        .cons-section {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border-left: 4px solid #dc3545;
+        }
+        
+        .pros-section h2, .cons-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+        
+        .pros-section h2 {
+            color: #155724;
+        }
+        
+        .cons-section h2 {
+            color: #721c24;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .pros-section li:before {
+            content: "✓";
+            color: #28a745;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .cons-section li:before {
+            content: "⚠";
+            color: #dc3545;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .tech-stack {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tech-icon {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin: 50px 0 30px;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 University Transport Bot</h1>
+            <p class="subtitle">AI-помощник для Корпоративного университета Транспортного комплекса</p>
+        </header>
+        
+        <div class="bot-preview">
+            <div class="bot-name">@University_mos_transport_bot</div>
+            <div class="bot-description">Умный помощник, который всегда на связи 24/7</div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🎯 Умные ответы</h3>
+                <p>Бот использует нейросеть GigaChat для точных и контекстных ответов на все вопросы абитуриентов</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>⏱ Экономия времени</h3>
+                <p>Снижает нагрузку на сотрудников приемной комиссии, автоматически отвечая на частые вопросы</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📱 Доступность</h3>
+                <p>Работает в Telegram - самой популярной платформе для общения в России</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🔄 Бесперебойная работа</h3>
+                <p>Автоматическое восстановление после сбоев, постоянная доступность</p>
+            </div>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros-section">
+                <h2>🚀 Наши преимущества</h2>
+                <ul>
+                    <li>Полная база знаний университета всегда под рукой</li>
+                    <li>Простота обслуживания - не требует программистов</li>
+                    <li>Высокая точность ответов благодаря нейросетям</li>
+                    <li>Доступность для всех пользователей Telegram</li>
+                    <li>Обновления без простоев</li>
+                    <li>Поддержка текстовых сообщений</li>
+                </ul>
+            </div>
+            
+            <div class="cons-section">
+                <h2>⚠️ Ограничения прототипа</h2>
+                <ul>
+                    <li>Ограниченная функциональность голосовых сообщений</li>
+                    <li>Зависимость от стабильности платформы Telegram</li>
+                    <li>Блочная архитектура без исходного кода</li>
+                    <li>Требует ручного обновления базы знаний</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tech-stack">
+            <h2>🛠 Технологический стек</h2>
+            <div class="tech-icons">
+                <div class="tech-icon">Telegram API</div>
+                <div class="tech-icon">GigaChat AI</div>
+                <div class="tech-icon">No-Code Platform</div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Готовы упростить общение с абитуриентами?</h2>
+            <p>Наш бот уже работает и помогает тысячам студентов</p>
+            <a href="https://t.me/University_mos_transport_bot" class="cta-button">🚀 Попробовать бота</a>
+        </div>
+        
+        <footer>
+            <p>Презентация проекта | DriveHack 4.0 | made by Nosov</p>
+        </footer>
+    </div>
+</body>
+</html>
